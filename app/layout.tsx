@@ -20,9 +20,10 @@ export default function RootLayout({
         <Script
           id='CookieConsent'
           src='https://policy.app.cookieinformation.com/uc.js'
-          data-culture='FR'
+          data-culture='EN'
           data-gcm-version='2.0'
           type='text/javascript'
+          strategy='beforeInteractive'
         />
       </head>
       <body>
