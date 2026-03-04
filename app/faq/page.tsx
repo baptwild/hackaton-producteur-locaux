@@ -1,4 +1,10 @@
-import Head from 'next/head';
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Questions Fréquentes - Les Voisins de Panier',
+  description:
+    'Découvrez comment commander en circuit court à Grenoble, la provenance de nos produits et nos critères de sélection bio.',
+}
 
 const FAQ: React.FC = () => {
   const faqs = [
@@ -20,7 +26,7 @@ const FAQ: React.FC = () => {
     },
     {
       q: 'Y a-t-il un moyen de récupérer ma commande ?',
-      a: 'Certains producteurs proposent des points de retrait locaux à Grenoble. Vérifiez les options sur la page du producteur concerné ou contactez-les directement pour plus d\'informations.',
+      a: "Certains producteurs proposent des points de retrait locaux à Grenoble. Vérifiez les options sur la page du producteur concerné ou contactez-les directement pour plus d'informations.",
     },
     {
       q: 'Comment fonctionnent les paniers hebdomadaires ?',
@@ -30,43 +36,40 @@ const FAQ: React.FC = () => {
       q: 'Les Voisins de Panier propose-t-il des livraisons à domicile à Grenoble ?',
       a: 'Oui, plusieurs de nos producteurs offrent des options de livraison à domicile dans la métropole de Grenoble. Les informations de livraison sont disponibles sur leurs pages respectives.',
     },
-  ];
+  ]
 
   const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(f => ({
-      "@type": "Question",
-      "name": f.q,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": f.a,
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a,
       },
     })),
-  };
+  }
 
   return (
-      <>
-        <Head>
-          <title>Questions Fréquentes - Les Voisins de Panier</title>
-          <meta name="description" content="Questions fréquentes concernant Les Voisins de Panier. Découvrez comment commander, la qualité des produits locaux, et plus encore." />
-          <script type="application/ld+json">
-            {JSON.stringify(jsonLd)}
-          </script>
-        </Head>
-        <div className="container section-padding" style={{ maxWidth: '800px' }}>
-          <h1>Questions Fréquemment Posées</h1>
-          <div style={{ marginTop: '3rem' }}>
-            {faqs.map((f, i) => (
-                <div key={i} className="faq-item">
-                  <h2 className="faq-question">{f.q}</h2>
-                  <p>{f.a}</p>
-                </div>
-            ))}
-          </div>
+    <>
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className='container section-padding' style={{ maxWidth: '800px' }}>
+        <h1>Questions Fréquemment Posées</h1>
+        <div style={{ marginTop: '3rem' }}>
+          {faqs.map((f, i) => (
+            <div key={i} className='faq-item'>
+              <h2 className='faq-question'>{f.q}</h2>
+              <p>{f.a}</p>
+            </div>
+          ))}
         </div>
-      </>
-  );
-};
+      </div>
+    </>
+  )
+}
 
-export default FAQ;
+export default FAQ
