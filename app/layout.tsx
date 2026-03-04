@@ -16,14 +16,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='fr'>
-      <body>
-        <Script
+
+    <head>
+      <title>Les Voisins de Panier Grenoble</title>
+      <Script
           id='CookieConsent'
           src='https://policy.app.cookieinformation.com/uc.js'
-          data-culture='EN'
+          data-culture='FR' // Assurez-vous de changer cela selon votre langue
           data-gcm-version='2.0'
-          strategy='beforeInteractive'
-        />
+          strategy='beforeInteractive' // Charge le script avant d'interagir avec la page
+      />
+    </head>
+      <body>
         <Script id='piwik-pro' strategy='afterInteractive'>
           {` 
             (function(window, document, dataLayerName, id) {
@@ -31,7 +35,7 @@ export default function RootLayout({
             var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName);var qPString=qP.length>0?("?"+qP.join("&")):"";
             tags.async=!0,tags.src="https://wild-hackaton.containers.piwik.pro/"+id+".js"+qPString,scripts.parentNode.insertBefore(tags,scripts);
             !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
-            })(window, document, 'dataLayer', 'e09fd7c3-30f1-4a78-a183-4e4e22f9d9d7');
+            })(window, document, vdc'dataLayer', 'e09fd7c3-30f1-4a78-a183-4e4e22f9d9d7');
           `}
         </Script>
         <header className='main-header'>
