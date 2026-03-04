@@ -1,7 +1,10 @@
-import producers from '@/data/producteurs.json'
+import producersData from '@/data/producteurs.json'
+import { Producteur } from '@/types/producteur'
 import Link from 'next/link'
 
 export default function ProducteursPage() {
+  const producers = producersData as Producteur[]
+
   return (
     <div className='container section-padding'>
       <header>

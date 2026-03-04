@@ -1,7 +1,10 @@
-import producers from '@/data/producteurs.json'
+import producersData from '@/data/producteurs.json'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
+import { Producteur } from '@/types/producteur'
+
+const producers = producersData as Producteur[]
 
 export async function generateMetadata({
   params,
@@ -10,7 +13,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params
   const categoryLabel =
-    producers.find((p) => p.category === slug)?.categoryLabel || 'Producteurs'
+    producers.find((producer) => producer.category === slug)?.categoryLabel ||
+    'Producteurs'
+
   return {
     title: `${categoryLabel} à Grenoble - Les Voisins de Panier`,
     description: `Découvrez notre sélection de ${categoryLabel.toLowerCase()} locaux et écoresponsables en Isère.`,

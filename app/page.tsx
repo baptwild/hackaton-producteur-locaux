@@ -1,7 +1,10 @@
-import producers from '@/data/producteurs.json'
+import producersData from '@/data/producteurs.json'
+import { Producteur } from '@/types/producteur'
 import Link from 'next/link'
 
 export default function Home() {
+  const producers = producersData as Producteur[]
+
   const categories = Array.from(
     new Map(producers.map((p) => [p.category, p.categoryLabel])).entries(),
   ).map(([slug, label]) => ({ slug, label }))
