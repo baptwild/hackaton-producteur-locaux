@@ -23,7 +23,6 @@ export default function RootLayout({
           data-culture='FR'
           data-gcm-version='2.0'
           type='text/javascript'
-          strategy='beforeInteractive'
         />
       </head>
       <body>
