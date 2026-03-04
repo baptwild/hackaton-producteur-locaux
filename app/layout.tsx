@@ -16,17 +16,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='fr'>
-      <head>
+      <body>
         <Script
           id='CookieConsent'
           src='https://policy.app.cookieinformation.com/uc.js'
           data-culture='EN'
           data-gcm-version='2.0'
-          type='text/javascript'
           strategy='beforeInteractive'
         />
-      </head>
-      <body>
         <Script id='piwik-pro' strategy='afterInteractive'>
           {` 
             (function(window, document, dataLayerName, id) {
