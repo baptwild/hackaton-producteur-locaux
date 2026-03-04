@@ -27,13 +27,15 @@ export default function Home() {
         <h2 className='text-center'>Nos filières locales</h2>
         <div className='producers-grid'>
           {categories.map((cat) => (
-            <div key={cat.slug} className='card text-center'>
+            <Link
+              key={cat.slug}
+              href={`/producteurs/${cat.slug}`}
+              className='card text-center'
+            >
               <span className='icon-large'>🥗</span>
               <h3>{cat.label}</h3>
-              <Link href={`/producteurs/${cat.slug}`} className='text-muted'>
-                Voir tout →
-              </Link>
-            </div>
+              <p className='text-muted'>Voir tout →</p>
+            </Link>
           ))}
         </div>
       </section>
