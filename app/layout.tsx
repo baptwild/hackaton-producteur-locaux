@@ -16,14 +16,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='fr'>
-      <body>
-        <Script
+
+    <head>
+      <Script
           id='CookieConsent'
           src='https://policy.app.cookieinformation.com/uc.js'
-          data-culture='EN'
-          data-gcm-version='2.0'
-          strategy='beforeInteractive'
-        />
+          strategy='beforeInteractive' // Charge le script avant d'interagir avec la page
+          onLoad={() => {
+            console.log('CookieConsent script loaded successfully');
+          }}
+          onError={(e) => {
+            console.error('Error loading CookieConsent script:', e);
+          }}
+      />
+    </head>
+      <body>
         <Script id='piwik-pro' strategy='afterInteractive'>
           {` 
             (function(window, document, dataLayerName, id) {
