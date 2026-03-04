@@ -15,7 +15,7 @@ export default function Home() {
             La plateforme de mise en relation directe avec les producteurs bio
             et artisans de la métropole Grenobloise.
           </p>
-          <div>
+          <div className='hero-links'>
             <Link href='/producteurs' className='btn btn-primary'>
               Découvrir les producteurs
             </Link>

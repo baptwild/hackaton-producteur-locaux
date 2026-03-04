@@ -67,7 +67,7 @@ export default async function ProducerPage({
         </article>
 
         <aside className='contact-aside'>
-          <h3>Contact & Direct</h3>
+          <h3 className='contact-title'>Contact & Direct</h3>
           <p className='mb-1'>📍 {p.address}</p>
           <p className='mb-1'>📞 {p.phone || 'Non renseigné'}</p>
           <p className='mb-1 text-muted'>📧 {p.email || 'Non renseigné'}</p>
