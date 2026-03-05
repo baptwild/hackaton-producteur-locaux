@@ -1,4 +1,7 @@
+'use client'
+
 import producersData from '@/data/producteurs.json'
+import { DataLayer } from '@/types/dataLayer'
 import { Producteur } from '@/types/producteur'
 import Link from 'next/link'
 
@@ -8,6 +11,17 @@ export default function Home() {
   const categories = Array.from(
     new Map(producers.map((p) => [p.category, p.categoryLabel])).entries(),
   ).map(([slug, label]) => ({ slug, label }))
+
+  const dataLayer = (categoryLabel: string) => {
+    const win = globalThis as unknown as DataLayer
+    if (win.dataLayer) {
+      win.dataLayer.push({
+        event: 'view_category_producteurs',
+        category_name: categoryLabel,
+      })
+      console.log('Category tracked:', categoryLabel)
+    }
+  }
 
   return (
     <div className='container section-padding'>
@@ -34,6 +48,7 @@ export default function Home() {
               key={cat.slug}
               href={`/producteurs/${cat.slug}`}
               className='card text-center'
+              onClick={() => dataLayer(cat.label)}
             >
               <span className='icon-large'>🥗</span>
               <h3>{cat.label}</h3>

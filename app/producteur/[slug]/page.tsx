@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { Producteur } from '@/types/producteur'
+import ContactButton from '@/components/ContactButton'
 
 const producers = producersData as Producteur[]
 
@@ -96,9 +97,7 @@ export default async function ProducerPage({
           <p className='mb-1 text-muted'>
             📧 {producer.email || 'Non renseigné'}
           </p>
-          <button className='btn btn-primary w-full mt-1'>
-            Envoyer un message
-          </button>
+          <ContactButton producerName={producer.name} />
         </aside>
       </div>
 
