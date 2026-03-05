@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import './styles.css'
-import Link from 'next/link'
 import Script from 'next/script'
 import CookieBanner from '@/components/CookieBanner'
 import Footer from '@/components/Footer'
+import Header from '@/components/Header'
 
 export const metadata: Metadata = {
   title: 'Les Voisins de Panier Grenoble',
@@ -29,17 +29,8 @@ export default function RootLayout({
             })(window, document, 'dataLayer', 'e09fd7c3-30f1-4a78-a183-4e4e22f9d9d7');
           `}
         </Script>
-        <header className='main-header'>
-          <nav className='container nav-container'>
-            <Link href='/' className='logo'>
-              Les Voisins de Panier
-            </Link>
-            <div className='nav-links'>
-              <Link href='/producteurs'>Producteurs</Link>
-              <Link href='/faq'>FAQ</Link>
-            </div>
-          </nav>
-        </header>
+
+        <Header />
 
         <main>{children}</main>
 

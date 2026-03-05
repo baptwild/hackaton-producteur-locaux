@@ -1,6 +1,7 @@
 'use client'
 
 import producersData from '@/data/producteurs.json'
+import { CATEGORY_ICONS } from '@/enums/category'
 import { DataLayer } from '@/types/dataLayer'
 import { Producteur } from '@/types/producteur'
 import Link from 'next/link'
@@ -19,40 +20,59 @@ export default function Home() {
         event: 'view_category_producteurs',
         category_name: categoryLabel,
       })
-      console.log('Category tracked:', categoryLabel)
     }
   }
 
   return (
-    <div className='container section-padding'>
-      <section className='hero'>
-        <div className='hero-content'>
-          <h1>Mangez local et écoresponsable à Grenoble</h1>
-          <p className='text-muted'>
-            La plateforme de mise en relation directe avec les producteurs bio
-            et artisans de la métropole Grenobloise.
-          </p>
-          <div className='hero-links'>
-            <Link href='/producteurs' className='btn btn-primary'>
-              Découvrir les producteurs
-            </Link>
+    <div className='home-wrapper'>
+      <section className='hero-section'>
+        <div className='container'>
+          <div className='hero-content'>
+            <span className='badge-hero'>Local & Durable</span>
+            <h1>Mangez local et éco responsable à Grenoble</h1>
+            <p className='hero-subtitle'>
+              La plateforme de mise en relation directe avec les meilleurs
+              maraîchers, fromagers et artisans de l'Isère.
+            </p>
+            <div className='hero-actions'>
+              <Link href='/producteurs' className='btn btn-primary btn-lg'>
+                Parcourir les producteurs
+              </Link>
+              <Link href='/faq' className='btn btn-outline btn-lg'>
+                Comment ça marche ?
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className='section-padding'>
-        <h2 className='text-center'>Nos filières locales</h2>
-        <div className='producers-grid'>
+      <section className='container section-padding'>
+        <div className='section-header'>
+          <h2>Nos filières locales</h2>
+          <p className='text-muted'>
+            Sélectionnez une filière pour découvrir tous nos producteurs du
+            bassin grenoblois. De la ferme à votre assiette, explorez la
+            richesse de nos terroirs !
+          </p>
+        </div>
+
+        <div className='categories-grid'>
           {categories.map((cat) => (
             <Link
               key={cat.slug}
               href={`/producteurs/${cat.slug}`}
-              className='card text-center'
+              className='category-card'
               onClick={() => dataLayer(cat.label)}
             >
-              <span className='icon-large'>🥗</span>
-              <h3>{cat.label}</h3>
-              <p className='text-muted'>Voir tout →</p>
+              <div className='category-icon-wrapper'>
+                <span className='category-emoji'>
+                  {CATEGORY_ICONS[cat.slug] || '🚜'}
+                </span>
+              </div>
+              <div className='category-info'>
+                <h3>{cat.label}</h3>
+                <span className='category-link'>Découvrir →</span>
+              </div>
             </Link>
           ))}
         </div>

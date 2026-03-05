@@ -54,7 +54,7 @@ export default async function CategoryPage({
             <span className='badge'>{p.city}</span>
             <h3>{p.name}</h3>
             <p className='text-muted'>{p.description}</p>
-            <div className='card-cta'>Voir le profil →</div>
+            <div className='card-cta'>Voir les infos →</div>
           </Link>
         ))}
       </div>
