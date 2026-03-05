@@ -1,7 +1,10 @@
+import producersData from '@/data/producteurs.json'
+import { Producteur } from '@/types/producteur'
 import { MetadataRoute } from 'next'
-import producers from '@/data/producteurs.json'
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const producers = producersData as Producteur[]
+
   const baseUrl = 'https://hackaton-producteur-locaux.vercel.app'
   const lastModified = new Date()
 

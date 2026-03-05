@@ -1,40 +1,43 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Questions Fréquentes - Les Voisins de Panier',
+  title: 'FAQ Circuit Court Grenoble | Aide & Commandes Les Voisins de Panier',
   description:
-    'Découvrez comment commander en circuit court à Grenoble, la provenance de nos produits et nos critères de sélection bio.',
+    'Réponses sur la vente directe, les labels bio et la livraison de produits locaux en Isère. Tout savoir sur le fonctionnement de notre marketplace grenobloise.',
 }
 
-const FAQ: React.FC = () => {
+const FAQ = () => {
   const faqs = [
     {
-      q: 'Comment commander à un producteur local ?',
-      a: 'Notre plateforme facilite la mise en relation. Contactez directement le producteur de Grenoble via son profil pour passer votre commande. Chaque producteur a ses propres modalités de commande indiquées sur sa page.',
+      id: 'commande-directe',
+      q: 'Comment commander à un producteur local à Grenoble ?',
+      a: 'Pour commander en circuit court, sélectionnez un producteur sur notre plateforme et utilisez le bouton de contact direct. La transaction se fait sans intermédiaire pour garantir une rémunération juste aux agriculteurs de l’Isère.',
     },
     {
-      q: 'Les produits proposés par Les Voisins de Panier sont-ils tous bio ?',
-      a: 'Tous nos producteurs de la région Auvergne-Rhône-Alpes sont sélectionnés pour leurs pratiques écoresponsables (Bio, Nature & Progrès, ou local raisonné) afin de garantir la qualité des produits proposés.',
+      id: 'labels-bio',
+      q: 'Les produits de la marketplace sont-ils certifiés bio ou écoresponsables ?',
+      a: 'Oui, we sélectionnons rigoureusement nos partenaires en Auvergne-Rhône-Alpes. Ils disposent de certifications reconnues : AB (Agriculture Biologique), Nature & Progrès, ou le label local "Isère Savoir-Faire".',
     },
     {
-      q: 'Comment être sûr de la qualité des produits des producteurs à Grenoble ?',
-      a: 'Nous collaborons uniquement avec des producteurs locaux certifiés dans la région. Vous pouvez consulter leurs certifications sur leur page de profil sur notre site. Pour en savoir plus sur chaque producteur, visitez leur section respective.',
+      id: 'qualite-produits',
+      q: 'Comment est garantie la fraîcheur des produits locaux ?',
+      a: 'La fraîcheur est assurée par le modèle de vente directe. Les légumes, fruits et produits laitiers sont souvent récoltés ou préparés le jour même de la mise à disposition dans la métropole grenobloise.',
     },
     {
-      q: 'Quels types de produits locaux puis-je trouver à Grenoble ?',
-      a: 'À Grenoble, vous aurez accès à une vaste sélection de fruits, légumes, produits laitiers, miel, et cosmétiques naturels, tous provenant de producteurs locaux engagés. Pour découvrir tous les produits, rendez-vous sur la page [Produits](#) de notre plateforme.',
+      id: 'type-produits',
+      q: 'Quels types de produits peut-on acheter en circuit court en Isère ?',
+      a: 'Notre catalogue inclut des légumes de saison, fruits du Grésivaudan, fromages du Vercors et de Chartreuse, miel de montagne, œufs bio et cosmétiques artisanaux fabriqués à Grenoble.',
     },
     {
-      q: 'Y a-t-il un moyen de récupérer ma commande ?',
-      a: "Certains producteurs proposent des points de retrait locaux à Grenoble. Vérifiez les options sur la page du producteur concerné ou contactez-les directement pour plus d'informations.",
+      id: 'points-retrait',
+      q: 'Où se situent les points de retrait des paniers à Grenoble ?',
+      a: 'Chaque producteur définit ses points de collecte : directement à la ferme (Meylan, Saint-Ismier), sur les marchés locaux (Estacade, Hoche) ou via des points relais partenaires en centre-ville.',
     },
     {
-      q: 'Comment fonctionnent les paniers hebdomadaires ?',
-      a: 'De nombreux producteurs offrent l’option de paniers hebdomadaires où vous pouvez recevoir des produits frais chaque semaine selon les saisons. Consultez les pages des producteurs pour plus de détails sur leurs offres.',
-    },
-    {
-      q: 'Les Voisins de Panier propose-t-il des livraisons à domicile à Grenoble ?',
-      a: 'Oui, plusieurs de nos producteurs offrent des options de livraison à domicile dans la métropole de Grenoble. Les informations de livraison sont disponibles sur leurs pages respectives.',
+      id: 'livraison-domicile',
+      q: 'Proposez-vous la livraison de produits bio à domicile à Grenoble ?',
+      a: 'Certains de nos producteurs partenaires proposent la livraison à domicile dans la métropole de Grenoble (Échirolles, Fontaine, Saint-Martin-d’Hères). Les zones de livraison sont précisées sur chaque profil.',
     },
   ]
 
@@ -52,23 +55,45 @@ const FAQ: React.FC = () => {
   }
 
   return (
-    <>
+    <div className='container section-padding'>
       <script
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className='container section-padding' style={{ maxWidth: '800px' }}>
-        <h1>Questions Fréquemment Posées</h1>
-        <div style={{ marginTop: '3rem' }}>
-          {faqs.map((f, i) => (
-            <div key={i} className='faq-item'>
-              <h2 className='faq-question'>{f.q}</h2>
-              <p>{f.a}</p>
+
+      <div className='faq-wrapper'>
+        <header className='faq-header'>
+          <span className='badge'>Assistance Locale</span>
+          <h1 className='mt-1'>Questions Fréquemment Posées</h1>
+          <p className='text-muted'>
+            Tout ce qu'il faut savoir sur l'agriculture durable et la
+            consommation locale en région grenobloise.
+          </p>
+        </header>
+
+        <section className='faq-grid'>
+          {faqs.map((f) => (
+            <div key={f.id} id={f.id} className='card faq-card'>
+              <h2 className='faq-question-text'>{f.q}</h2>
+              <p className='faq-answer-text'>{f.a}</p>
             </div>
           ))}
-        </div>
+        </section>
+
+        <footer className='card faq-footer-cta mt-3 text-center'>
+          <h3>Vous ne trouvez pas votre réponse ?</h3>
+          <p className='mb-1'>
+            Nos producteurs partenaires vous répondent directement sur leurs
+            pages respectives.
+          </p>
+          <div className='mt-1'>
+            <Link href='/producteurs' className='btn btn-primary'>
+              Voir les producteurs
+            </Link>
+          </div>
+        </footer>
       </div>
-    </>
+    </div>
   )
 }
 

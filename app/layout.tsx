@@ -16,17 +16,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='fr'>
-
-    <head>
-      <title>Les Voisins de Panier Grenoble</title>
-      <Script
+      <head>
+        <title>Les Voisins de Panier Grenoble</title>
+        <Script
           id='CookieConsent'
           src='https://policy.app.cookieinformation.com/uc.js'
           data-culture='FR' // Assurez-vous de changer cela selon votre langue
           data-gcm-version='2.0'
           strategy='beforeInteractive' // Charge le script avant d'interagir avec la page
-      />
-    </head>
+        />
+      </head>
       <body>
         <Script id='piwik-pro' strategy='afterInteractive'>
           {` 
