@@ -1,8 +1,15 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import Logo from '@/public/images/voisins_de_panier_logo.webp'
 
 export default function Footer() {
+  const handleOpenCookies = (e: React.MouseEvent) => {
+    e.preventDefault()
+    globalThis.dispatchEvent(new Event('open-cookie-settings'))
+  }
+
   return (
     <footer className='main-footer'>
       <div className='container footer-grid'>
@@ -22,7 +29,7 @@ export default function Footer() {
         </div>
 
         <div className='footer-links'>
-          <p className='footer-title'>Navigation</p>
+          <p className='footer-title'>En Savoir Plus</p>
           <nav>
             <Link href='/producteurs'>Nos Producteurs</Link>
             <Link href='/faq'>Foire aux questions</Link>
@@ -31,11 +38,13 @@ export default function Footer() {
         </div>
 
         <div className='footer-links'>
-          <p className='footer-title'>Légal</p>
+          <p className='footer-title'>Infos Légales</p>
           <nav>
             <Link href='/mentions-legales'>Mentions Légales</Link>
             <Link href='/politique-de-confidentialite'>Confidentialité</Link>
-            <Link href='/cookies'>Gestion des cookies</Link>
+            <button className='footer-cookie-link' onClick={handleOpenCookies}>
+              Gestion des Cookies
+            </button>
           </nav>
         </div>
       </div>
