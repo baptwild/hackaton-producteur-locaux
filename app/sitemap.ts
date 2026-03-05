@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/faq`, lastModified },
     { url: `${baseUrl}/contact`, lastModified },
     { url: `${baseUrl}/mentions-legales`, lastModified },
+    { url: `${baseUrl}/politique-de-confidentialite`, lastModified },
   ]
 
   const categories = Array.from(
