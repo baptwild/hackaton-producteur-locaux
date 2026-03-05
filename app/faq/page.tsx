@@ -1,3 +1,4 @@
+import Breadcrumb from '@/components/Breadcrumb'
 import { Metadata } from 'next'
 import Link from 'next/link'
 
@@ -62,6 +63,7 @@ const FAQ = () => {
       />
 
       <div className='faq-wrapper'>
+        <Breadcrumb steps={[{ label: 'Foire aux Questions' }]} />
         <header className='faq-header'>
           <span className='badge'>Assistance Locale</span>
           <h1 className='mt-1'>Questions Fréquemment Posées</h1>
@@ -73,9 +75,24 @@ const FAQ = () => {
 
         <section className='faq-grid'>
           {faqs.map((f) => (
-            <div key={f.id} id={f.id} className='card faq-card'>
-              <h2 className='faq-question-text'>{f.q}</h2>
-              <p className='faq-answer-text'>{f.a}</p>
+            <div
+              key={f.id}
+              id={f.id}
+              className='card faq-card'
+              style={{ display: 'flex', flexDirection: 'column' }}
+            >
+              <span style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>
+                💡
+              </span>
+              <h2 className='faq-question-text' style={{ fontSize: '1.1rem' }}>
+                {f.q}
+              </h2>
+              <p
+                className='faq-answer-text'
+                style={{ fontSize: '0.95rem', flexGrow: 1 }}
+              >
+                {f.a}
+              </p>
             </div>
           ))}
         </section>

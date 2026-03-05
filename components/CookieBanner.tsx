@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 interface PiwikWindow extends Window {
   ppms?: {
@@ -12,12 +12,21 @@ interface PiwikWindow extends Window {
 export default function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false)
 
+  const showBanner = useCallback(() => {
+    setIsVisible(true)
+  }, [])
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true)
     }, 1000)
-    return () => clearTimeout(timer)
-  }, [])
+    globalThis.addEventListener('open-cookie-settings', showBanner)
+
+    return () => {
+      clearTimeout(timer)
+      globalThis.removeEventListener('open-cookie-settings', showBanner)
+    }
+  }, [showBanner])
 
   const accept = () => {
     const win = globalThis as unknown as PiwikWindow
@@ -32,11 +41,13 @@ export default function CookieBanner() {
     }
   }
 
+  const decline = () => setIsVisible(false)
+
   if (!isVisible) return null
 
   return (
     <div className='cookie-overlay'>
-      <div className='cookie-modal'>
+      <div className='cookie-modal modal-animate'>
         <div className='cookie-content'>
           <span className='icon-large'>🍪</span>
           <h2>Respect de votre vie privée</h2>
@@ -48,10 +59,7 @@ export default function CookieBanner() {
             <button className='btn btn-primary w-full mb-1' onClick={accept}>
               Accepter et continuer
             </button>
-            <button
-              className='btn-text w-full'
-              onClick={() => setIsVisible(false)}
-            >
+            <button className='btn-text w-full' onClick={decline}>
               Continuer sans accepter
             </button>
           </div>
