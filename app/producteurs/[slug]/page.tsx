@@ -51,7 +51,7 @@ export default async function CategoryPage({
       <div className='producers-grid'>
         {filtered.map((p) => (
           <Link href={`/producteur/${p.slug}`} key={p.id} className='card'>
-            <span className='badge'>Local</span>
+            <span className='badge'>{p.city}</span>
             <h3>{p.name}</h3>
             <p className='text-muted'>{p.description}</p>
             <div className='card-cta'>Voir le profil →</div>
