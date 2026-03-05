@@ -24,9 +24,9 @@ export async function generateMetadata({
 
 export default async function CategoryPage({
   params,
-}: {
+}: Readonly<{
   params: Promise<{ slug: string }>
-}) {
+}>) {
   const { slug } = await params
   const filtered = producers.filter((p) => p.category === slug)
 

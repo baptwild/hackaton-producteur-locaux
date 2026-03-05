@@ -23,9 +23,9 @@ export async function generateMetadata({
 
 export default async function ProducerPage({
   params,
-}: {
+}: Readonly<{
   params: Promise<{ slug: string }>
-}) {
+}>) {
   const { slug } = await params
   const producer = producers.find((item) => item.slug === slug)
 
