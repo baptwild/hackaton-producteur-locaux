@@ -16,7 +16,7 @@ export default function Footer() {
         <div className='footer-brand'>
           <Image
             src={Logo}
-            alt='Logo Les Voisins de Panier'
+            alt='Les Voisins de Panier'
             width={180}
             height={98}
             className='footer-logo'
