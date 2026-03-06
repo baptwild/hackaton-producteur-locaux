@@ -595,7 +595,7 @@ main {
   border-radius: 10px;
   flex-shrink: 0;
 }
-.info-content label {
+.info-content p {
   display: block;
   font-size: 0.75rem;
   text-transform: uppercase;

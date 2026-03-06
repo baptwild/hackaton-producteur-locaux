@@ -122,25 +122,25 @@ export default async function ProducerPage({
               <div className='info-item'>
                 <span className='info-icon'>📍</span>
                 <div className='info-content'>
-                  <label>Adresse</label>
+                  <p>Adresse</p>
                   <span>{producer.address}</span>
                 </div>
               </div>
 
               <div className='info-item'>
                 <span className='info-icon'>📞</span>
-                <div className='info-content'>
-                  <label>Téléphone</label>
+                <a className='info-content' href={`tel:${producer.phone}`}>
+                  <p>Téléphone</p>
                   <span>{producer.phone || 'Sur demande'}</span>
-                </div>
+                </a>
               </div>
 
               <div className='info-item'>
                 <span className='info-icon'>📧</span>
-                <div className='info-content'>
-                  <label>Email</label>
+                <a className='info-content' href={`mailto:${producer.email}`}>
+                  <p>Email</p>
                   <span>{producer.email || 'Via le bouton contact'}</span>
-                </div>
+                </a>
               </div>
             </div>
 
